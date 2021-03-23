@@ -1,4 +1,8 @@
-.App {
+body {
+  margin: 0;
+  padding: 0;
+}
+/* .App {
   text-align: center;
 }
 
@@ -27,7 +31,13 @@
 .App-link {
   color: #61dafb;
 }
-
+body{ */
+  /* background: url('https://www.newcastleherald.com.au/images/transform/v1/crop/frm/SZjBdCvXzdW4Ygt94axh3r/644e1d4a-39f5-40a4-b3ff-fdbf33a443eb.jpg/r0_289_5491_3670_w1200_h678_fmax.jpg')  rgba(99, 55, 55, 0.212); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: -4em;   */
+  /* font-family: 'Montserrat', sans-serif;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +45,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
