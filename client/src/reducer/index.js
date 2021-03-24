@@ -38,7 +38,7 @@ const initialState = {
     recipeDetail: {},//detalle de receta
     diets:[],
     submit: ' ',
-    filtered: [],
+    // filtered: [],
 };
 
 
@@ -75,8 +75,7 @@ function reducer(state = initialState, action){
     if (action.type === 'FILTER_BY') {
       return {
       ...state,
-      filtered:action.payload==='renewed'? []
-      :filterBy(state.recipesLoaded, action.payload),
+      recipesLoaded:filterBy(state.recipesLoaded, action.payload)
       };
     };
     if (action.type === 'SORT') {
@@ -86,10 +85,10 @@ function reducer(state = initialState, action){
           if(action.payload==='min to max'){return a.spoonacularScore - b.spoonacularScore;}
           if(action.payload==='max to min'){return b.spoonacularScore - a.spoonacularScore;}
       }),
-      filtered:state.recipesLoaded.sort(function(a, b) {
-        if(action.payload==='min to max'){return a.spoonacularScore - b.spoonacularScore;}
-        if(action.payload==='max to min'){return b.spoonacularScore - a.spoonacularScore;}
-        }),
+      // filtered:state.recipesLoaded.sort(function(a, b) {
+      //   if(action.payload==='min to max'){return a.spoonacularScore - b.spoonacularScore;}
+      //   if(action.payload==='max to min'){return b.spoonacularScore - a.spoonacularScore;}
+      //   }),
       };
     };
     if (action.type === 'SUBMIT') {

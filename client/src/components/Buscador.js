@@ -17,15 +17,10 @@ export function Buscador(props) {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;//index de la primera pagina---0
   let currentPost;
 
-  //ASIGNO CURRENT POST PARA QUE NO RENDERICE EN ERROR
-  // props.recipes.error
-  // ?currentPost=null
-  // :currentPost=props.recipes.slice(indexOfFirstPost, indexOfLastPost);
-
   props.recipes.error
   ?currentPost=null
-  :props.filtered.length
-  ?currentPost=props.filtered.slice(indexOfFirstPost, indexOfLastPost)
+  // :props.filtered[0]
+  // ?currentPost=props.filtered.slice(indexOfFirstPost, indexOfLastPost)
   :currentPost=props.recipes.slice(indexOfFirstPost, indexOfLastPost);
 
 
@@ -55,8 +50,8 @@ export function Buscador(props) {
   
   const handleSubmit = (event) => {//manda el estado para getrecipes
     event.preventDefault();
-    props.filterBy('renewed');
     props.getRecipes(title);
+    // props.filterBy('renewed');
     props.getDiets();
   };
 
@@ -133,7 +128,7 @@ export function Buscador(props) {
       <Paginado
       postsPerPage={postsPerPage}
       totalPosts={props.recipes.length} 
-      filteredPosts={props.filtered.length}
+      // filteredPosts={props.filtered.length}
       paginate={paginate}
       />
 
@@ -148,7 +143,7 @@ function mapStateToProps(state) {
     recipes: state.recipesLoaded,
     recipeDetail: state.recipeDetail,
     diets: state.diets,
-    filtered: state.filtered,
+    // filtered: state.filtered,
   };
 };
 
