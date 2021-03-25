@@ -26,6 +26,7 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    
     // APId:{ ID QUE ESTABA PARA RELACIONAR BD
     //   type: DataTypes.INTEGER,
     //   allowNull: true,

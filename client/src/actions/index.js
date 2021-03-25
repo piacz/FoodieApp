@@ -5,6 +5,7 @@ export const GET_TYPES='GET_TYPES';
 export const FILTER_BY='FILTER_BY';
 export const SORT='SORT';
 export const SUBMIT='SUBMIT';
+export const FILTRADO='FILTRADO';
 
 
 export function getRecipes(titulo) {
@@ -61,3 +62,9 @@ export function submit(payload) {
       payload: payload,//objeto a postear
   };
 };
+// export function filtrado(payload) {
+//   return { 
+//       type: FILTRADO, 
+//       payload: payload,
+//   };
+// };

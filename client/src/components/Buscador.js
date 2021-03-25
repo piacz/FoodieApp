@@ -3,12 +3,14 @@ import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 import Paginado from './Paginado.js'
 import './buscador.css';
+import './buttons.css';
 
 import { getRecipeDetail, getRecipes, sortRecipe, getDiets, filterBy, SortBy } from '../actions/index.js';
 
 export function Buscador(props) {
 
   const [title, setTitle]= useState('');
+  const [loading, setLoading]= useState('');
   const [render, setRender]= useState('');
   const [currentPage, setCurrentPage]= useState(1);
   const [postsPerPage, setPostsPerPage]= useState(8);
@@ -50,9 +52,12 @@ export function Buscador(props) {
   
   const handleSubmit = (event) => {//manda el estado para getrecipes
     event.preventDefault();
+    setLoading('Loading...')
     props.getRecipes(title);
-    // props.filterBy('renewed');
     props.getDiets();
+    props.filterBy('reset');
+    setTitle(' ');
+    setLoading('');
   };
 
   //filtrado
@@ -60,35 +65,43 @@ export function Buscador(props) {
     event.preventDefault();
     setCurrentPage(1);
     props.filterBy(string);
-    setRender(`filtrado por ${string}`);
   };
 
   const handleAll = (event) => {
     event.preventDefault();
+    setLoading('Loading...')
+    props.filterBy('reset');
     props.getRecipes('%20');
-    props.getDiets()
+    props.getDiets();
+    setLoading('');
   };
 
 
   return (
     <div className='ppal'>
-      
-      <NavLink to={`/post`}> Create Recipe </NavLink>
-      
-      {/* <h2>Search:</h2> */}
-      <form className="form-container" onSubmit={(e) => handleSubmit(e)}>
-        <div>
-        <label className="label" htmlFor="title"> Recipe: </label>
+      <nav className='top'>
+
+      <NavLink to={`/post`} className='linkPost'> Create Recipe </NavLink>
+      <div className='search-box'>
+      <form className="search" action="" onSubmit={(e) => handleSubmit(e)}>
+
+        <label className="label" htmlFor="title"> RECIPE: </label>
         <input
+          placeholder="Search here..."
+          required
           type="text"
           id="title"
           autoComplete="off"
           value={title}//el state es el value del input, el titulo de la recipe
           onChange={(e) => handleChange(e)}
         />
-        </div>
-        <button type="submit">SEARCH</button><button onClick={(e)=> handleAll(e)}>ALL RECIPES</button>
+
+        <button type="submit" className='searchButton'>SEARCH</button>
+        <button onClick={(e)=> handleAll(e)}className='searchButton'>ALL RECIPES</button>
       </form>
+      </div>  
+
+      <div className='selects'>
 
       <select id="alfabetico" onChange={(e) =>handleSelect(e)}>
         <option value="ascendente">A-Z</option>
@@ -100,31 +113,55 @@ export function Buscador(props) {
         <option value="max to min">Higher scores first</option>
       </select>
 
+      </div>
+      </nav>
+      {/* -------------------- */}
+      <div className='filteredBy'>filtered by: {props.filtered}</div>
       {props.recipes.error
-        ?(<div>{props.recipes.error}</div>)                          
+        ?(<div className='errors'>{props.recipes.error}</div>)                          
       :(
       <ul className='ul'> 
         {/* Aqui tienes que escribir tu codigo para mostrar la lista de peliculas */
         currentPost && currentPost.map((recipe)=> (
         <li className='li' key={recipe.id}>
 
-          <NavLink to={`/recipe/${recipe.id}`} onClick={()=>props.getRecipeDetail(recipe.id)}>
-          {recipe.title}
-          </NavLink>
-          <div> Score: {recipe.spoonacularScore}</div>
-          {(typeof recipe.diets[0] === 'string') &&  recipe.diets.map((diet) => <div>{diet}</div>)}
-          {(typeof recipe.diets[0] === 'object') &&  recipe.diets.map((diet) => <div>{diet.name}</div>)}
-          <img src={recipe.image}></img>
+          <div>
+            <NavLink to={`/recipe/${recipe.id}`} className='litext' onClick={()=>props.getRecipeDetail(recipe.id)}>
+            {recipe.title}
+            </NavLink>
+            <div className='recetascontent'>
+
+              <div className='scorelitem'> Score: {recipe.spoonacularScore}</div>
+              <div className='newscoreli'>
+
+              <div className='scoreli' id='scoreli'>Diets:</div>
+              {(typeof recipe.diets[0] === 'string') &&  recipe.diets.map((diet) => <div className='recetascontent'>{diet}</div>)}
+              {(typeof recipe.diets[0] === 'object') &&  recipe.diets.map((diet) => <div className='recetascontent'>{diet.name}</div>)}
+              </div>
+            </div>
+
+          </div>
+          {
+            !recipe.image?<img className='recipic' src='https://asianinspirations.com.au/wp-content/uploads/2019/07/Chinese-Cooking-Hacks.jpg' ></img>
+            :<img className='recipic' src={recipe.image} ></img>
+          }
+          
           
         </li>))
         }
       </ul>
       )}
-      {props.diets && props.diets.map((diet) =>(
-        <button className='dietButton' onClick={(event)=>handleClick(diet.name, event)}>{diet.name}</button>
-      ))
-      }
+
+      {loading[0]?<div>{loading}</div>:null}
+
+      <div className='dietButtons'>
+
+        {props.diets && props.diets.map((diet) =>(
+          <button className='dietButton' onClick={(event)=>handleClick(diet.name, event)}>{diet.name}</button>
+        ))
+        }
       
+      </div>
       <Paginado
       postsPerPage={postsPerPage}
       totalPosts={props.recipes.length} 
@@ -143,7 +180,7 @@ function mapStateToProps(state) {
     recipes: state.recipesLoaded,
     recipeDetail: state.recipeDetail,
     diets: state.diets,
-    // filtered: state.filtered,
+    filtered: state.filtered,
   };
 };
 
@@ -155,6 +192,7 @@ function mapDispatchToProps(dispatch) {//me pasa como prop el dispatch de action
     getDiets: () => dispatch(getDiets()),
     filterBy: string => dispatch(filterBy(string)),
     SortBy: string => dispatch(SortBy(string)),
+    // filtrado: string => dispatch(filtrado(string)),
   };
 };
 

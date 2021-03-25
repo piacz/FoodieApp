@@ -3,6 +3,7 @@ import App from './App';
 import Post, {validate}  from './components/Post';
 import LandingPage from "./components/LandingPage";
 import Buscador from "./components/Buscador";
+import Paginado from "./components/Paginado";
 import Recipe from "./components/Recipe";
 import { render, screen } from '@testing-library/react';
 import Enzyme, { shallow, mount } from 'enzyme';
@@ -14,13 +15,11 @@ import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 const { Provider, Consumer } = React.createContext("defaultValue");
 Enzyme.configure({ adapter: new Adapter() })
+// configure({adapter: new Adapter()});
+
 chai.use(chaiEnzyme());
 
-// test('renders learn react link', () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+
 describe('<App /> component', () => {
   let wrapper;
   beforeEach(() => {
@@ -32,6 +31,18 @@ describe('<App /> component', () => {
     expect(wrapper.find(Route).first()).to.have.prop('component');
     expect(wrapper.find(Route).first()).to.not.have.prop('render');
   });
+});
+
+describe('<Buscador />', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(
+      <Post/>
+    );
+  });
+  it('Renderiza un <form>', () => {
+    expect(wrapper.find('form')).toHaveLength(1)
+  })
 });
 
 
@@ -54,9 +65,4 @@ describe('<App /> component', () => {
 //   });
 
 // });
-// describe('<Buscador />', () => {
-//   const ricardo = shallow(<Buscador store={store}/>) 
-//   describe('Buscador: ', () => {
-//     expect(ricardo).to.have.exactly(10).descendants('.dietButton')
-//   });
-// });
+

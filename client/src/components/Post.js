@@ -1,3 +1,4 @@
+import './form.css';
 import React, { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
@@ -56,9 +57,8 @@ export function Post(props) {
 
   const handleSubmit = function(e){
     e.preventDefault();
-    // axios.post('http://localhost:3001/recipe', input);
     props.submit(input)
-    setRender('Your recipe has been added correctly.')
+    setRender('Your recipe has been added correctly!')
     setInput({
       title: '',
       summary: '',
@@ -75,49 +75,53 @@ export function Post(props) {
     }
   }, [])
     return (
-      <form onSubmit={(e)=>handleSubmit(e)}>
-      <div>
-        <label>Title:</label>
-        <input className='unico' 
+      <div className='backgroundform'>
+        <div className='createurown'>Creating Your Own Recipe!</div>
+      <form className='recipeform'onSubmit={(e)=>handleSubmit(e)}>
+        <NavLink to='/home'  className='botonx'><button className='x'>X</button></NavLink>
+      <div className='packageinput'>
+        <label className='inputlabels'>Title:</label>
+        <input className='unico' autoComplete="off" 
           type="text" name="title" onChange={handleInputChange} value={input.title}/>
       </div>
-      <div>
-        <label>Summary:</label>
-        <input
+      <div className='packageinput'>
+        <label className='inputlabels'>Summary:</label>
+        <input className='unico' autoComplete="off"
           type="text" name="summary" onChange={handleInputChange} value={input.summary}/>
       </div>
-      <div>
-        <label>Score:</label>
-        <input 
+      <div className='packageinput'>
+        <label className='inputlabels'>Score:</label>
+        <input className='unico'
           type="number" name="spoonacularScore" onChange={handleInputChange} value={input.score}/>
         {errors.spoonacularScore && (
         <p className="danger">{errors.spoonacularScore}</p>
         )}
       </div>
-      <div>
-        <label>healthScore:</label>
-        <input 
+      <div className='packageinput'>
+        <label className='inputlabels'>healthScore:</label>
+        <input className='unico'
           type="number" name="healthScore" onChange={handleInputChange} value={input.healthScore}/>
           {errors.healthScore && (
           <p className="danger">{errors.healthScore}</p>
         )}
       </div>
-      <div>
-        <label>Instructions:</label>
-        <input 
+      <div className='packageinput'>
+        <label className='inputlabels'>Instructions:</label>
+        <textarea className='unico' autoComplete="off"
           type="text" name="instructions" onChange={handleInputChange} value={input.instructions}/>
       </div>
-      <p>
-        Dietas:
+      <p className='check'>
+        Diets:
         {props.diets && props.diets.map((diet)=>(
           <label><input type="checkbox" name={diet.name} value={diet.name} onChange={(e)=>handleCheck(e)}/>{diet.name}</label>
         ))}
       </p>
       {render[0] &&
-      <div>{render}</div>
+      <div id='recipecreated'>{render}</div>
       }
-      <input type='submit'value='Submit'/>
+      <input type='submit'value='Submit'id='submitbutton'/>
       </form>
+    </div>
     )
 }
 

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import { NavLink } from 'react-router-dom';
-// import Logo from '../../logoHenry.png'
 import { connect } from 'react-redux';
 import { NavLink } from "react-router-dom";
-// import { getRecipeDetail } from '../actions/index';
 
 
+import './recipe.css'
 
 export function Recipe(props) {
     useEffect(() => {
@@ -21,28 +19,51 @@ export function Recipe(props) {
     }, [props.recipeDetail]);
 
     return (
-        <div className="movie-detail">
-            <div>Detalle Receta:</div> 
-            <h1>{props.recipeDetail.name}</h1> 
-            <p id='summary'>Summary: {props.recipeDetail.summary}</p>
-            <h5>Score: {props.recipeDetail.spoonacularScore}</h5>
-            <h5>Health Level:
-                <p className='movieText'>{props.recipeDetail.healthScore}</p>
-            </h5>
-            <h5>Instructions:
-                <p className='movieText' id='instructions'>{props.recipeDetail.instructions}</p>
-            </h5>
-            {
-                props.recipeDetail.image && <img src={props.recipeDetail.image} align="right"></img>
-            }
-            Diets:
-            {props.recipeDetail.diets && props.recipeDetail.diets.map((diet) =>(
-                <div>{diet}</div>))
-            }
+        <div className='background'>  
+        <div className="recipe-detail">
+            <NavLink to='/home'  className='botonx'><button className='x'>X</button></NavLink>
+            <div className='recipedetail'>Recipe Detail:</div> 
+            <div className='titulorecipe'>
+                <div className='detallereceta'>{props.recipeDetail.title}</div> 
+            </div>
 
-            <NavLink to='/home'><button>Back Home!</button></NavLink>
+            <div className='scores'>
+
+                <h5 className='spoonacularScore'>Score: {props.recipeDetail.spoonacularScore}</h5>
+                <h5 className='healthScore'>Health Level:{props.recipeDetail.healthScore}</h5>
+
+            </div>
+            <div className='recipedetail'>Summary:</div>
+            <p id='summary'>{props.recipeDetail.summary}</p>
+            <div className='instrucciones'>
+
+                <div className='recipedetail'>Instructions:</div>
+                <p className='texts' id='instructions'>{props.recipeDetail.instructions}</p>
+                
+
+            </div>
+            <div className='bottom'>
+                    {
+                        !props.recipeDetail.image?<img className='recipic' src='https://www.wellandgood.com/wp-content/uploads/2019/12/Stocksy-cooking-for-one-Andrey-Pavlov.jpeg' ></img>
+                        : <img src={props.recipeDetail.image} align="right" className='imagendetalle'></img>
+                    }
+                    {/* <img src={props.recipeDetail.image} align="right" className='imagendetalle'></img> */}
+                
+                
+                <div className='dietsdetail'>
+
+                    Diets:
+                    {props.recipeDetail.diets && props.recipeDetail.diets.map((diet) =>(
+                        diet.name?<div>{diet.name}</div>
+                        :<div>{diet}</div>))
+                    }
+
+                </div>
+            </div>
+
 
         </div> 
+        </div>
     )
 };
 

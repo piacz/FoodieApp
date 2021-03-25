@@ -58,7 +58,7 @@ router.get('/', async function(req, res) {
     // EX PARA CARGAR LA BD CON LOS DATOS DE LA API
     // let datas = await data() 
     // // console.log(datas[0])
-    // ITERO Y VOY CREANDO RECIPES
+    // ITERO
     // for (let i = 0; i < datas.length; i++) {   
     //     const dataRecipes = await Recipe.findOrCreate({ //devuelve un array
     //         where: {

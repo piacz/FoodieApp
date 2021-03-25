@@ -10,7 +10,7 @@ function sortAsc(arr, field) {
        }
        return 0;
    })
-}
+};
 
 function sortDesc(arr, field) {
   return arr.sort(function (a, b) {
@@ -22,7 +22,7 @@ function sortDesc(arr, field) {
       }
       return 0;
   })
-}
+};
 function filterBy(arr, field) {
     let filteredArr=[]
     for(let i=0;i<arr.length;i++){
@@ -31,14 +31,14 @@ function filterBy(arr, field) {
         }
     }
     return filteredArr;
-}
+};
 
 const initialState = {
     recipesLoaded: [],//recetas cargadas
     recipeDetail: {},//detalle de receta
     diets:[],
     submit: ' ',
-    // filtered: [],
+    filtered: ' ',
 };
 
 
@@ -63,7 +63,6 @@ function reducer(state = initialState, action){
       return {
       ...state,
       recipesLoaded: sortedArr,
-    //   filtered: sortedArr,
       };
     };
     if (action.type === 'GET_TYPES') {
@@ -75,7 +74,8 @@ function reducer(state = initialState, action){
     if (action.type === 'FILTER_BY') {
       return {
       ...state,
-      recipesLoaded:filterBy(state.recipesLoaded, action.payload)
+      filtered:action.payload==='reset'? ' ': state.filtered+' | '+action.payload,
+      recipesLoaded:filterBy(state.recipesLoaded, action.payload),
       };
     };
     if (action.type === 'SORT') {

@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 //POST
 router.post('/recipe', async (req,res) => {
     // res.send('post viene')
-    let { title, summary, spoonacularScore, healthScore, instructions, diets} = req.body;
+    let { title, summary, spoonacularScore, healthScore, instructions, diets } = req.body;
     // console.log(req.body)
     //creo la receta con la data del form
     const receta = await Recipe.create({
@@ -51,7 +51,7 @@ router.post('/recipe', async (req,res) => {
     
     //las seteo
     await receta.setDiets(dietsDB);
-    res.status(200).json(receta)
+    res.status(200).json(receta);
 })
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
+import './buttons.css'
 const Paginado = ({postsPerPage, totalPosts, paginate}) => {
     const pageNumbers = [];
     // const filtradas = [];
@@ -18,11 +19,11 @@ const Paginado = ({postsPerPage, totalPosts, paginate}) => {
     
     return(
         <nav>
-            <ul>
+            <ul className='pages'>
                 {pageNumbers &&
                     pageNumbers.map(number => (
-                        <li key={number}> 
-                            <a onClick={() => paginate(number)} >{number}</a>
+                        <li className='page' key={number}> 
+                            <a className='pagenumber' onClick={() => paginate(number)} >{number}</a>
                         </li>
                     ))
                 }     
