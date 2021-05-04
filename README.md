@@ -16,16 +16,24 @@ Technologies used:
 
 To run this project: 
 
-1. Create an SQL database
+1. Create an SQL database named food
 2. Create an .env file in the folder api with the next variables:
 ```
 DB_USER= your_user
 DB_PASSWORD=your_pass
-DB_HOST=localhost```
+DB_HOST=localhost
+```
 
-3. Run 'npm i' on the api and the server
-4. Run 'npm start' on the api and the server
+3. Run ```npm i``` on the api and the server
+4. Run ```npm start``` on the api and the server
 
-# Screens
+<hr/>
+
+## Screens
+ 
+###Landing Page:
+![2021-05-04 (4)](https://user-images.githubusercontent.com/73494684/116958747-f95f8200-ac71-11eb-91ac-22f41bc6845b.png)
+
+
 
 
