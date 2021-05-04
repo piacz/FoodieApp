@@ -4,17 +4,20 @@
 
 <p>
   <img height="200" src="https://i.pinimg.com/originals/1a/e8/d4/1ae8d48b8f239e195db7a446a227c23b.jpg" align="right"/>
-  Web App in JavaScript to find recipes, filter them by diets, sort them by score and other filters. Users can also post their own recipes storing them in the project's own Postgres database through a CRUD with server routes. Some recipes come from consuming an external food API.
+  Web App in JavaScript to find recipes, filter them by diets, sort them by score and other filters. Users can also post their own recipes storing them in the project's own Postgres database through a CRUD with server routes and testing. Some recipes come from consuming an external food API.
 </p>
 
 
 
 Technologies used:
--Express
--Sequelize
--React
--Redux
--CSS
+ - [ ] PostgreSQL
+ - [ ] Sequelize
+ - [ ] Express
+ - [ ] Node.js
+ - [ ] React.js
+ - [ ] Redux.js
+ - [ ] CSS
+ - [ ] Testing: Mocha, Chai
 
 To run this project: 
 
@@ -28,8 +31,8 @@ DB_HOST=localhost
 apiKey=your_api_key
 ```
 
-4. Run ```npm i``` on the api and the server
-5. Run ```npm start``` on the api and the server
+4. Run ```npm i``` on the api and the client to install the necessary node modules
+5. Run ```npm start``` on the api and the client 
 
 <hr/>
 
