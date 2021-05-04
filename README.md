@@ -54,5 +54,10 @@ apiKey=your_api_key
 
 ![2021-05-04 (8)](https://user-images.githubusercontent.com/73494684/116959083-e8fbd700-ac72-11eb-9ff2-4c75639d971e.png)
 
+### Recipe detail:
+
+![2021-05-04 (18)](https://user-images.githubusercontent.com/73494684/116960955-55c5a000-ac78-11eb-817d-1d0a1e6f6f70.png)
+
+
 
 
