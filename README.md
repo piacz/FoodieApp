@@ -1,11 +1,13 @@
 
 # FoodieApp
 
-<p align="right">
-  <img height="200" src="https://www.pngfind.com/pngs/m/19-199305_collection-of-dinner-png-high-quality-food.png" />
+
+<p>
+  <img height="200" src="https://i.pinimg.com/originals/1a/e8/d4/1ae8d48b8f239e195db7a446a227c23b.jpg" align="right"/>
+  Web App in JavaScript to find recipes, filter them by diets, sort them by score and other filters. Users can also post their own recipes storing them in the project's own Postgres database through a CRUD with server routes. Some recipes come from consuming an external food API.
 </p>
 
-Web App in JavaScript to find recipes, filter them by diets, sort them by score and other filters. Users can also post their own recipes storing them in the project's own Postgres database through a CRUD with server routes. Some recipes come from consuming an external food API.
+
 
 Technologies used:
 -Express
