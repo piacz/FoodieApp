@@ -28,8 +28,8 @@ DB_HOST=localhost
 apiKey=your_api_key
 ```
 
-3. Run ```npm i``` on the api and the server
-4. Run ```npm start``` on the api and the server
+4. Run ```npm i``` on the api and the server
+5. Run ```npm start``` on the api and the server
 
 <hr/>
 
